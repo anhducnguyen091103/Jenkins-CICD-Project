@@ -6,11 +6,13 @@ pipeline {
     }
   }
   stages {
-    stage('Checkout') {
-      steps {
-        sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/anhducnguyen091103/Jenkins-CICD-Project.git'
-      }
+    stage('Checkout SCM') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [],
+                userRemoteConfigs: [[url: 'https://github.com/anhducnguyen091103/Jenkins-CICD-Project', credentialsId: 'github']]])
+            }
     }
     stage('Build and Test') {
       steps {
