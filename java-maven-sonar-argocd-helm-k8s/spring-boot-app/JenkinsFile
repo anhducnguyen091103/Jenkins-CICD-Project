@@ -6,14 +6,6 @@ pipeline {
     }
   }
   stages {
-    stage('Checkout SCM') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']],
-                doGenerateSubmoduleConfigurations: false,
-                extensions: [],
-                userRemoteConfigs: [[url: 'https://github.com/anhducnguyen091103/Jenkins-CICD-Project', credentialsId: 'github']]])
-            }
-    }
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
